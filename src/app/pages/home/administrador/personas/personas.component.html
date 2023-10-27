@@ -1,0 +1,81 @@
+<div class="container-fluid mt-2">
+  <div class="card p-5">
+    <div class="row">
+      <div class="col-4 card p-5 ">
+        <div>
+          <div class="fw-bold">
+            Registrar Persona
+          </div>
+        </div>
+        <form [formGroup]="formRegPersona">
+          <div>
+            <input type="text" class="form-control mt-2" placeholder="Numero de Cedula" formControlName="cedula">
+          </div>
+          <div>
+            <input type="text" class="form-control mt-2" placeholder="Primer nombre" formControlName="primerNombre">
+          </div>
+          <div>
+            <input type="text" class="form-control mt-2" placeholder="Segundo nombre" formControlName="segundoNombre">
+          </div>
+          <div>
+            <input type="text" class="form-control mt-2" placeholder="Apellidos" formControlName="apellidos">
+          </div>
+          <div>
+            <select  class="form-select mt-2" formControlName="tipoPersona">
+
+              <option value="" selected disabled>Tipo de persona</option>
+              <option *ngFor="let item of tipoPersonas" value="{{ item.id_tipo }}">{{ item.descripcion }}</option>
+
+            </select>
+          </div>
+          <div>
+            <input type="text" class="form-control mt-2" placeholder="Direccion" formControlName="direccion">
+          </div>
+          <div>
+            <input type="text" class="form-control mt-2" placeholder="Telefono" formControlName="telefono">
+          </div>
+          <div>
+            <input type="text" class="form-control mt-2" placeholder="Ciudad" formControlName="ciudad">
+          </div>
+
+        </form>
+        <div>
+          <button [disabled]="formRegPersona.invalid" class="btn btn-success mt-2"> Registrar </button>
+        </div>
+      </div>
+      <div class="col card p-5 ms-3 text-center overflow-auto">
+        <div class="col p-3 card ">
+          <div class="row border-bottom ">
+            <div class="col p-2">Nombre</div>
+            <div class="col p-2">Apellidos</div>
+            <div class="col p-2">Cedula</div>
+            <div class="col p-2">Tipo de persona</div>
+            <div class="col p-2">Direccion</div>
+            <div class="col p-2">Telefono</div>
+            <div class="col p-2">Ciudad</div>
+            <!-- <div class="col p-2">Acciones</div> -->
+          </div>
+          <div class="row border-bottom " *ngFor="let item of personas">
+            <div class="col p-2">{{ item.primer_nombre  }}</div>
+            <div class="col p-2">{{ item.apellidos }}</div>
+            <div class="col p-2">{{ item.cedula }}</div>
+            <div class="col p-2">{{ stringValue(item.id_tipo_persona) }}</div>
+            <div class="col p-2">{{ item.direccion }}</div>
+            <div class="col p-2">{{ item.telefono }}</div>
+            <div class="col p-2">{{ item.ciudad }}</div>
+            <!-- <div class="col p-2">
+              <button class="btn btn-warning"> Editar </button>
+            </div> -->
+          </div>
+          <div>
+            <div class="text-center" *ngIf="isLoading">
+              <div class="spinner-border text-dark" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

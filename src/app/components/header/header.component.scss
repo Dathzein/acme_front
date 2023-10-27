@@ -1,0 +1,12 @@
+.bg-header{
+  background-color: #2e2e2e;
+}
+.cursor-pointer{
+  cursor: pointer;
+  color: white;
+
+  &:hover{
+    color: #c2b9b9;
+    background-color: #3f3f3f;
+  }
+}

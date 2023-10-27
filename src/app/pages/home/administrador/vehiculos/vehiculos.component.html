@@ -1,0 +1,101 @@
+<div class="container-fluid mt-2">
+  <div class="card p-5">
+    <div class="row flex-column">
+      <div class="col-2 pb-2">
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"> Registrar vehiculo</button>
+      </div>
+      <div class="col card p-5 ms-3 text-center overflow-scroll">
+
+        <div class="col p-3 card ">
+          <div class="row border-bottom ">
+            <div class="col p-2">Placa</div>
+            <div class="col p-2">Marca</div>
+            <div class="col p-2">Color</div>
+            <div class="col p-2">Tipo de vehiculo</div>
+            <div class="col p-2">Conductor</div>
+            <div class="col p-2">Propietario</div>
+            <!-- <div class="col p-2">Acciones</div> -->
+          </div>
+          <div class="row border-bottom " *ngFor="let item of vehiculos">
+            <div class="col p-2">{{ item.placa }}</div>
+            <div class="col p-2">{{ item.marca }}</div>
+            <div class="col p-2">{{ item.color }}</div>
+            <div class="col p-2">{{ stringValueTypVh(item.id_tipo_vehiculo) }}</div>
+            <div class="col p-2">{{ stringValuePro(item.id_propietario) }}</div>
+            <div class="col p-2">{{ stringValueDriv(item.id_conductor) }}</div>
+            <!-- <div class="col p-2">
+              <button class="btn btn-warning"> Editar </button>
+            </div> -->
+          </div>
+          <div >
+            <div>
+              <div class="text-center" *ngIf="isLoading">
+                <div class="spinner-border text-dark" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar vehiculo</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="col card p-5 ">
+          <form [formGroup]="formRegVehiculo">
+            <div>
+              <input type="text" class="form-control mt-2" placeholder="Placa" formControlName="placa">
+            </div>
+            <div>
+              <input type="text" class="form-control mt-2" placeholder="Marca" formControlName="marca">
+            </div>
+            <div>
+              <input type="text" class="form-control mt-2" placeholder="Color" formControlName="color">
+            </div>
+            <div>
+              <select  class="form-select mt-2" formControlName="tipoVehiculo">
+
+                <option value="" selected disabled>Seleccione tipo vehiculo</option>
+                <option *ngFor="let item of tipoVehiculos" value="{{ item.id_tipo }}">{{ item.descripcion }}</option>
+
+              </select>
+            </div>
+            <div>
+              <select  class="form-select mt-2" formControlName="conductor">
+
+                <option value="" selected disabled>Seleccione conductor</option>
+                <option *ngFor="let item of conductores" value="{{ item.id }}">{{ item.primer_nombre + item.apellidos }}</option>
+
+              </select>
+            </div>
+            <div>
+              <select  class="form-select mt-2" formControlName="propietario">
+
+                <option value="" selected disabled>Seleccione propietario</option>
+                <option *ngFor="let item of propietarios" value="{{ item.id }}">{{ item.primer_nombre + item.apellidos }}</option>
+
+              </select>
+            </div>
+          </form>
+          <div>
+            <button [disabled]="formRegVehiculo.invalid" (click)="registrarVehiculo()" class="btn btn-success mt-2"  data-bs-dismiss="modal"> Registrar </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

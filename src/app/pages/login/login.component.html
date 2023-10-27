@@ -1,0 +1,33 @@
+<div class="container mt-5 p-5 ">
+  <div class="row">
+    <div class="col">
+      <div class="d-flex justify-content-center">
+        <div class="card p-5">
+          <div class="fw-bold text-center pb-5">
+            Login
+          </div>
+          <form [formGroup]="loginForm">
+            <div class="col mt-2 mb-2">
+              <input formControlName="email" type="email" class="form-control" placeholder="Usuario">
+            </div>
+            <div class="col mt-2 mb-2">
+              <input formControlName="password" type="password" class="form-control" placeholder="Contraseña" >
+            </div>
+
+          </form>
+          <div class="col mt-4 mb-2 text-center" *ngIf="!loginLoading">
+            <button [disabled]="loginForm.invalid" class="btn btn-primary" (click)="login()">Acceder</button>
+          </div>
+          <div class="col mt-4 mb-2 text-center"  *ngIf="loginLoading">
+            <div class="spinner-border text-dark" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
